@@ -1,0 +1,70 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_gravity="center"
+    android:gravity="center"
+    >
+
+
+            <com.expaorbit.interviewproject.MyTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/label_login_form"
+                    android:textColor="@color/colorMain"
+                    android:textSize="25sp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_centerInParent="true"
+                    />
+
+
+            <EditText
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="5dp"
+                android:textSize="15sp"
+                android:textColorHint="@color/colorHintEditText"
+                android:layout_marginBottom="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15dp"
+                android:background="@drawable/edittext_login"
+                android:id="@+id/edittext_user_id"
+                android:hint="@string/hint_admn_id" />
+            <EditText
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:textColorHint="@color/colorHintEditText"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:textSize="15sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:id="@+id/edittext_password"
+                android:padding="15dp"
+                android:background="@drawable/edittext_login"
+                android:hint="@string/hint_admn_password" />
+
+
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/label_login_btn"
+                android:textSize="15sp"
+                android:textColor="@color/colorLabelLoginBtn"
+                android:background="@drawable/btn_login"
+                android:padding="15dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="15dp"
+                android:id="@+id/btn_login"/>
+        </LinearLayout>
+
+
+
+

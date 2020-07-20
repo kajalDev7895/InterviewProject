@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">InterviewProject</string>
+    <string name="hint_admn_password">Password</string>
+    <string name="hint_admn_id">UserId</string>
+    <string name="label_login_form">Admin Portal</string>
+    <string name="label_login_btn">LOGIN</string>
+    <string name="message_invalid_credentials">Invalid Credentials</string>
+
 </resources>
