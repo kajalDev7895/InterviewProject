@@ -8,12 +8,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.expaorbit.interviewproject.GlobalConstants;
-import com.expaorbit.interviewproject.HomeActivity;
+import com.expaorbit.interviewproject.Constants;
 import com.expaorbit.interviewproject.R;
+import com.expaorbit.interviewproject.Utilities.KeyboardUtility;
 import com.expaorbit.interviewproject.presenter.LoginPresenter;
 
-public class LoginActivity extends AppCompatActivity implements ILoginView {
+public class LoginActivity extends AppCompatActivity implements IFormView {
 
     private Button mLoginBtn;
     private LoginPresenter mLoginPresenter;
@@ -41,28 +41,24 @@ public class LoginActivity extends AppCompatActivity implements ILoginView {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_login:
-                if(isInputValid())
                     mLoginPresenter.performLogin(mUserIDEditText.getText().toString(), mPasswordEditText.getText().toString());
+                KeyboardUtility.hideKeyboard(this,view);
                 break;
 
         }
     }
 
     @Override
-    public void onLoginResult(int resultCode) {
+    public void onSubmitFormSuccess() {
+        Intent intent=new Intent(LoginActivity.this,EmployeeActivity.class);
+        startActivity(intent);
+        finish();
+    }
 
-        switch (resultCode)
-        {
-            case GlobalConstants.LOGIN_RESULT_SUCCESSFUL:
-                Intent intent=new Intent(LoginActivity.this,HomeActivity.class);
-                startActivity(intent);
-                finish();
-                break;
-            case GlobalConstants.LOGIN_RESULT_INVALID_CREDENTIALS:
-                Toast.makeText(this,getString(R.string.message_invalid_credentials),Toast.LENGTH_LONG).show();
-                resetInputs();
-                break;
-        }
+    @Override
+    public void onSubmitFormFailure() {
+        Toast.makeText(this,getString(R.string.message_invalid_credentials),Toast.LENGTH_LONG).show();
+        resetInputs();
     }
 
     @Override
@@ -71,20 +67,21 @@ public class LoginActivity extends AppCompatActivity implements ILoginView {
         mPasswordEditText.setText("");
     }
 
-
     @Override
-    public boolean isInputValid() {
-        if (mUserIDEditText.getText().toString().trim().isEmpty()) {
-            mUserIDEditText.setError("Please enter valid UserID");
-            mUserIDEditText.requestFocus();
-            return false;
+    public void onValidationError(int validationCode) {
+        switch (validationCode) {
+            case Constants.LOGIN_VALIDATION_NAME_ERROR:
+                mUserIDEditText.setError("Please enter valid UserID");
+                mUserIDEditText.requestFocus();
+                break;
+            case Constants.LOGIN_VALIDATION_PASSWORD_ERROR:
+                mPasswordEditText.setError("Please enter password");
+                mPasswordEditText.requestFocus();
+                break;
         }
-        else if (mPasswordEditText.getText().toString().isEmpty()) {
-            mPasswordEditText.setError("Please enter password");
-            mPasswordEditText.requestFocus();
-            return false;
-        }
-        return true;
 
     }
+
+
+
 }
