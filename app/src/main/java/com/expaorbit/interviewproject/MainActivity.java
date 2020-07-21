@@ -14,6 +14,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //TODO: LOGIC to check whether the user is already logged in or not
         if(!mIsLoggedIn)
         {
             Intent intent  = new Intent(this,LoginActivity.class);
